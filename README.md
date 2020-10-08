@@ -47,10 +47,6 @@ hutool | 4.1.19
 
 ![image](/docs/架构图.jpg) 
 
-
-#### 交流群 
-学习交流(千人群): <a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=3c1017efeda485820c9eddee13a125d99261f7504746aa4824bc5c7c2b9a4234"><img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="open-cloud交流群" title="open-cloud交流群"></a>  
-
 #### 代码结构
 ``` lua
 open-cloud-pro
