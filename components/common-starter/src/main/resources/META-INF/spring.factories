@@ -1,0 +1,5 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.boxiaoyun.autoconfigure.AutoConfiguration,\
+  com.boxiaoyun.autoconfigure.FeignAutoConfiguration,\
+  com.boxiaoyun.autoconfigure.SwaggerAutoConfiguration,\
+  com.boxiaoyun.autoconfigure.WebMvcConfiguration,\
+  com.boxiaoyun.autoconfigure.RedisCacheAutoConfiguration

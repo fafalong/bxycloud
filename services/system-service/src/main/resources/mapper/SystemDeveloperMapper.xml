@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.boxiaoyun.system.mapper.SystemDeveloperMapper">
+    <resultMap id="BaseResultMap" type="com.boxiaoyun.system.client.model.entity.SystemDeveloper">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="user_id" jdbcType="BIGINT" property="userId"/>
+        <result column="user_name" jdbcType="VARCHAR" property="userName"/>
+        <result column="nick_name" jdbcType="VARCHAR" property="nickName"/>
+        <result column="avatar" jdbcType="VARCHAR" property="avatar"/>
+        <result column="email" jdbcType="VARCHAR" property="email"/>
+        <result column="mobile" jdbcType="VARCHAR" property="mobile"/>
+        <result column="company_id"  jdbcType="BIGINT" property="companyId"/>
+        <result column="user_type" jdbcType="VARCHAR" property="userType" />
+        <result column="user_desc" jdbcType="VARCHAR" property="userDesc"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="status" property="status" jdbcType="TINYINT"/>
+    </resultMap>
+    <!-- 表名 -->
+    <sql id="t_name">system_developer</sql>
+    <!-- 别名 -->
+    <sql id="t_alias">system_developer as d</sql>
+    <!--外键表关联定义 -->
+    <sql id="join">
+
+    </sql>
+    <!-- 自定义分页 -->
+    <select id="pageList" resultType="com.boxiaoyun.common.mybatis.EntityMap">
+        select ${ew.select} FROM
+        <include refid="t_alias"/>
+        <include refid="join"/>
+        ${ew.customSqlSegment}
+    </select>
+</mapper>

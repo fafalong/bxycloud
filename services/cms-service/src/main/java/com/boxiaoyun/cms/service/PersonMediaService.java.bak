@@ -1,0 +1,49 @@
+package com.boxiaoyun.cms.service;
+
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.hysj.cms.client.model.entity.PersonMedia;
+import com.opencloud.common.model.PageParams;
+
+import java.util.ArrayList;
+
+/**
+ * 媒体主用户媒体接口
+ *
+ * @author: liujian
+ * @date: 2019/10/13 14:39
+ * @description:
+ */
+public interface PersonMediaService {
+    /**
+     * 分页查询
+     *
+     * @param pageParams
+     * @return
+     */
+    IPage<PersonMedia> findListPage(PageParams pageParams);
+
+    /**
+     * 添加微信公众号
+     *
+     * @param personMedia
+     */
+    void addPersonMedia(PersonMedia personMedia);
+
+    /**
+     * 更新微信公众号
+     *
+     * @param personMedia
+     */
+    void modifyPersonMedia(PersonMedia personMedia);
+
+
+    /**
+     * 根据主键获取微信公众号信息
+     *
+     * @param personMediaId
+     * @return
+     */
+    PersonMedia getPersonMedia(Long personMediaId);
+
+}

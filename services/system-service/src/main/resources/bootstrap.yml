@@ -1,0 +1,58 @@
+server:
+    port: 8233
+spring:
+    application:
+        name: ${artifactId}
+    cloud:
+        sentinel:
+            transport:
+                dashboard: localhost:8680
+            eager: true
+        #手动配置Bus id,
+        bus:
+            id: ${spring.application.name}:${server.port}
+        nacos:
+            config:
+                server-addr: ${config.server-addr}
+                file-extension: yml
+                namespace: ${config.namespace}
+                shared-configs:
+                    - dataId: common.yml
+                      refresh: true
+                    - dataId: redis.yml
+                      refresh: false
+                    - dataId: db.yml
+                      refresh: true
+                    - dataId: rabbitmq.yml
+                      refresh: false
+                enabled: true
+            discovery:
+                namespace: ${config.namespace}
+                server-addr: ${discovery.server-addr}
+    main:
+        allow-bean-definition-overriding: true
+    #解决restful 404错误 spring.mvc.throw-exception-if-no-handler-found=true spring.resources.add-mappings=false
+    mvc:
+        throw-exception-if-no-handler-found: true
+    resources:
+        add-mappings: false
+    profiles:
+        active: ${profile.name}
+
+
+management:
+    endpoints:
+        web:
+            exposure:
+                include: '*'
+cloud:
+    swagger2:
+        enabled: true
+        description: 系统基础服务
+        title: 系统基础服务
+
+#mybatis plus 设置
+mybatis-plus:
+ #实体扫描，多个package用逗号或者分号分隔
+  typeAliasesPackage: com.boxiaoyun.base.client.**.entity
+  mapper-locations: classpath:mapper/*.xml

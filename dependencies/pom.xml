@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <packaging>pom</packaging>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.boxiaoyun</groupId>
+    <artifactId>dependencies</artifactId>
+    <version>1.0.0</version>
+    <description>依赖定义模块</description>
+    <modules>
+        <module>cloud-dependencies</module>
+        <module>cloud-clients-dependencies</module>
+    </modules>
+
+    <!--nexus 私有仓库发布地址 -->
+    <distributionManagement>
+        <!--maven的settings.xml文件中设置<server>标签-->
+        <repository>
+            <id>open-cloud-releases</id>
+            <url>http://39.106.187.125:8081/repository/maven-releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>open-cloud-snapshots</id>
+            <url>http://39.106.187.125:8081/repository/maven-snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+</project>

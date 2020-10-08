@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.boxiaoyun.system.mapper.SystemAppMapper">
+    <!-- 表名 -->
+    <sql id="t_name">system_app</sql>
+    <!-- 别名 -->
+    <sql id="t_alias">system_app as app</sql>
+    <!--外键表关联定义 -->
+    <sql id="join">
+        <if test="ew.aliasMap.developer != null">
+            <![CDATA[left join system_developer ${ew.aliasMap.developer} on ${ew.aliasMap.developer}.user_id = app.developer_id]]>
+        </if>
+    </sql>
+    <!-- 自定义分页 -->
+    <select id="pageList" resultType="com.boxiaoyun.common.mybatis.EntityMap">
+        select ${ew.select} FROM
+        <include refid="t_alias"/>
+        <include refid="join"/>
+        ${ew.customSqlSegment}
+    </select>
+</mapper>

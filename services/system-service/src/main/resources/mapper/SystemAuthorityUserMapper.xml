@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.boxiaoyun.system.mapper.SystemAuthorityUserMapper">
+    <resultMap id="BaseResultMap" type="com.boxiaoyun.system.client.model.entity.SystemAuthorityUser">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <result column="authority_id" jdbcType="BIGINT" property="authorityId"/>
+        <result column="user_id" jdbcType="BIGINT" property="userId"/>
+        <result column="expire_time" jdbcType="TIMESTAMP" property="expireTime"/>
+    </resultMap>
+    <resultMap id="UserAuthorityMenu" type="com.boxiaoyun.system.client.model.AuthorityMenu"
+               extends="com.boxiaoyun.system.mapper.SystemMenuMapper.BaseResultMap">
+        <result column="authority_id" jdbcType="BIGINT" property="authorityId"/>
+        <result column="authority" jdbcType="VARCHAR" property="authority"/>
+        <collection property="actionList" column="{menuId=menu_id,userId=user_id}"
+                    select="com.boxiaoyun.system.mapper.SystemAuthorityMapper.selectAuthorityAction"/>
+    </resultMap>
+
+    <select id="selectAuthorityByUser"
+            resultMap="com.boxiaoyun.system.mapper.SystemAuthorityMapper.Authority">
+        SELECT
+            a.authority_id,
+            a.authority,
+            up.expire_time,
+            'user' as owner
+        FROM
+            system_authority_user AS up
+                INNER JOIN system_authority AS a ON up.authority_id = a.authority_id
+        WHERE
+            up.user_id = #{userId}
+            and  a.status = 1
+    </select>
+
+    <select id="selectAuthorityMenuByUser"
+            resultMap="UserAuthorityMenu">
+         SELECT
+            a.authority_id,
+            a.authority,
+            a.`status`,
+            m.id as menu_id,
+            m.*,
+            ua.user_id,
+            ua.expire_time
+        FROM
+            system_authority_user AS ua
+       INNER JOIN system_authority AS a ON ua.authority_id = a.authority_id
+       INNER JOIN system_menu AS m ON a.menu_id = m.id
+        WHERE
+                ua.user_id = #{userId}
+                and a.status = 1
+    </select>
+</mapper>

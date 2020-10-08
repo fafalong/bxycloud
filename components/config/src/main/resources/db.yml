@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    username: yuqing
+    password: yuqing123456yuqing
+    type: com.zaxxer.hikari.HikariDataSource
+    #    driver-class-name: com.mysql.cj.jdbc.Driver
+    #url: jdbc:mysql://192.168.56.1:3306/open-promotion?useSSL=false&useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    db-type: mysql
+    driver-class-name: com.p6spy.engine.spy.P6SpyDriver
+    url: jdbc:p6spy:mysql://192.168.56.1:3306/open-promotion?serverTimezone=CTT&characterEncoding=utf8&useUnicode=true&useSSL=false&autoReconnect=true&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true
+
+

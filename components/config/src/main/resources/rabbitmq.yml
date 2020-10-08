@@ -1,0 +1,21 @@
+#rabbitmq
+bxy:
+  rabbitmq:
+    # 若系统中有除了zipkin之外的地方使用了mq ，则一定不能设置成false
+    enabled: false
+    ip: 192.168.56.1
+    port: 5672
+    username: yuqing
+    password: yuqing123456yuqing
+
+spring:
+  rabbitmq:
+    enabled: ${bxy.rabbitmq.enabled}
+    host: ${bxy.rabbitmq.ip}
+    port: ${bxy.rabbitmq.port}
+    username: ${bxy.rabbitmq.username}
+    password: ${bxy.rabbitmq.password}
+    virtual-host: /
+    publisher-confirms: true
+    listener:
+      type: direct # simple direct

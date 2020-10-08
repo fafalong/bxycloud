@@ -1,0 +1,29 @@
+package com.hysj.cms.client.model.entity;
+
+import java.util.List;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.Data;
+
+@Data
+@TableName(value = "hy_cms_person_media")//指定表名
+public class PersonMedia extends BaseEntity{
+
+
+    private Long id;
+    /**
+     * 用户id
+     */
+    private Long personId ;//bigint comment '用户id',
+    private String accountId;// varchar(100) not null  comment '媒体账号id',
+    private String accountName;// varchar(100) comment '账号名称',
+    private String homePage ;//varchar(200) comment '主页链接',
+    private String avatar ;//varchar(200) comment '头像',
+    private int fansNum;// int not null default 0 comment '粉丝数',
+    private String accountDesc;// varchar(300) comment '账号简介',
+    private int accountPrice ;//int not null default 0 comment '账号报价'
+    private int mediaCategoryId;
+    private int mediaNameId;
+
+}

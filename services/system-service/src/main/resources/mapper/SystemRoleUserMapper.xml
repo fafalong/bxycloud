@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.boxiaoyun.system.mapper.SystemRoleUserMapper">
+    <resultMap id="BaseResultMap" type="com.boxiaoyun.system.client.model.entity.SystemRoleUser">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <result column="user_id" property="userId" jdbcType="BIGINT"/>
+        <result column="role_id" property="roleId" jdbcType="BIGINT"/>
+    </resultMap>
+
+    <select id="selectUsersByRoleId" resultMap="com.boxiaoyun.system.mapper.SystemRoleMapper.BaseResultMap">
+        SELECT
+        system_role_user.user_id,
+        system_role.role_id,
+        system_role.code,
+        system_role.name,
+        system_role.role_desc,
+        system_role.status,
+        system_role.create_time,
+        system_role.update_time
+        FROM
+        system_role_user
+        INNER JOIN system_role ON system_role_user.role_id = system_role.role_id
+        WHERE user_id = #{userId}  and status = 1
+    </select>
+
+
+    <select id="selectUsersIdByRoleId" resultType="java.lang.Long">
+        SELECT
+        system_role.role_id
+        FROM
+        system_role_user
+        INNER JOIN system_role ON system_role_user.role_id = system_role.role_id
+        WHERE user_id = #{userId}  and status = 1
+    </select>
+</mapper>

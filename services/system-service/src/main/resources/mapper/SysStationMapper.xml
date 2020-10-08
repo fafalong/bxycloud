@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.boxiaoyun.system.mapper.SysStationMapper">
+    <resultMap id="BaseResultMap" type="com.boxiaoyun.system.client.model.entity.SysStation">
+        <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+
+        <result column="status" jdbcType="VARCHAR" property="status" />
+        <result column="station_desc" jdbcType="VARCHAR" property="stationDesc" />
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+        <!-- 关联对象 -->
+        <association property="org" select="com.boxiaoyun.system.mapper.SystemOrgMapper.findSystemOrgById" column="org_id">
+            <id column="id" property="id"/>
+            <result column="label" property="label"/>
+            <result column="abbreviation" property="abbreviation"/>
+            <result column="org_desc" property="orgDesc"/>
+        </association>
+
+    </resultMap>
+
+    <select id="findSysStationList" resultMap="BaseResultMap">
+        SELECT
+            *
+        FROM
+            sys_station as s
+        left join system_org as org
+        on s.org_id = org.id
+        WHERE
+            1=1
+            and s.status = true
+    </select>
+    <select id="getSysStationList" parameterType="java.util.Map" resultMap="BaseResultMap">
+        SELECT
+            *
+        FROM
+            sys_station as s
+        left join system_org as org
+        on s.org_id = org.id
+        WHERE
+            1=1
+            and s.status = true
+
+
+
+    </select>
+</mapper>
