@@ -139,7 +139,7 @@ open-cloud-pro
 5. 本地启动(按顺序启动)
      1. [必需]SystemServiceApplication(系统服务)
      2. [必需]AdminApplication(后台服务)
-     3. [必需]ApiGatewayApplication(开放网关)或ApiZuulApplication
+     3. [必需]ApiGatewayApplication(开放网关)
      ```
         访问 http://localhost:8888
      ```
